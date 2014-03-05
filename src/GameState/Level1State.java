@@ -58,7 +58,7 @@ public class Level1State extends GameState{
         dx = 0;
         direccion = 0;
         choqueDer = choqueIzq = false;
-        barra = new Barra(x_pos,y_pos, Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/Resources/Sprites/barra.png")));
+        barra = new Barra();
         
         // bola
         x_bola = 220;
@@ -73,18 +73,25 @@ public class Level1State extends GameState{
     
     public void update(){
         bg.update();
+        barra.update();
     }
     
     public void draw(Graphics2D g){
         bg.draw(g);
-        g.drawImage(barra.getImagenI(), x_pos, y_pos, null);
+        barra.draw(g);
     }
     
     public void keyPressed(int k){
-        
+        if(k == KeyEvent.VK_LEFT)
+            barra.setLeft(true);
+        if(k == KeyEvent.VK_RIGHT)
+            barra.setRight(true);
     }
     
     public void keyReleased(int k){
-        
+        if(k == KeyEvent.VK_LEFT)
+            barra.setLeft(false);
+        if(k == KeyEvent.VK_RIGHT)
+            barra.setRight(false);
     }
 }

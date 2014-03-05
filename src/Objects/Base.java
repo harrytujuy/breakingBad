@@ -19,6 +19,12 @@ public class Base {
 	private int posX;    //posicion en x.       
 	private int posY;	//posicion en y.
         private int vel;
+        protected int x;
+        protected int y;
+        protected int dx;
+        protected int dy;
+        protected boolean left;
+        protected boolean right;
 	private ImageIcon icono;    //icono.
 	
 	/**
@@ -27,10 +33,8 @@ public class Base {
 	 * @param posY es la <code>posicion en y</code> del objeto.
 	 * @param image es la <code>imagen</code> del objeto.
 	 */
-	public Base(int posX, int posY ,Image image) {
-		this.posX=posX;
-		this.posY=posY;
-		icono = new ImageIcon(image);
+	public Base() {
+		
 	}
 	
 	/**
@@ -44,6 +48,13 @@ public class Base {
         
         public int getVelocidad(){
             return vel;
+        }
+        
+        public void setLeft(boolean b){
+            left = b;
+        }
+        public void setRight(boolean b){
+            right = b;
         }
         
 	public void setPosX(int posX) {
@@ -73,6 +84,11 @@ public class Base {
 	public int getPosY() {
 		return posY;
 	}
+        
+        public void setPosition(int x, int y){
+            this.x = x;
+            this.y = y;
+        }
 	
 	/**
 	 * Metodo modificador usado para cambiar el icono del objeto 
@@ -132,5 +148,4 @@ public class Base {
 	public boolean intersecta(Base obj){
 		return getPerimetro().intersects(obj.getPerimetro());
 	}
-	
 }
