@@ -14,7 +14,7 @@ import java.awt.Image;
  */
 public class Bola extends Base{
     
-    public Bola(int posX,int posY,Image image){
-		super(posX,posY,image);	
+    public Bola(){
+		super();	
     }
 }

@@ -10,6 +10,7 @@ package Objects;
  *
  * @author Szerch
  */
+import Main.GamePanel;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -31,6 +32,7 @@ public class Barra extends Base{
     
     public Barra(){
 		super();
+                dx = 0;
                 try{
                     imagen = ImageIO.read(getClass().getResourceAsStream("/Resources/Sprites/barra.png"));
                 }catch(Exception e){
@@ -40,21 +42,9 @@ public class Barra extends Base{
     
     public void getNextPosition(){
         if(left)
-            dx -= 3;
+            setPosX(getPosX() - 4);
         else if(right)
-            dx += 3;
-        else{
-            if(dx > 0){
-                dx -= 3;
-                if(dx < 0)
-                    dx = 0;
-            }
-            else if(dx < 0){
-                dx += 3;
-                if(dx > 0)
-                    dx = 0;
-            }
-        }
+            setPosX(getPosX() + 4);
     }
     
     public void update(){
@@ -63,6 +53,6 @@ public class Barra extends Base{
     }
     
     public void draw(Graphics2D g){
-        g.drawImage(imagen, 0, 0, null);
+        g.drawImage(imagen, getPosX()+GamePanel.WIDTH - 100, getPosY()+GamePanel.HEIGHT - 50, null);
     }
 }

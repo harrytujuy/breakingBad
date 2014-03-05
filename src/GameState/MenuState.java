@@ -32,9 +32,9 @@ public class MenuState extends GameState {
 			bg.setVector(-0.1, 0);
 			
 			titleColor = new Color(10,0,120);
-			titleFont = new Font("Arial",Font.PLAIN,28);
+			titleFont = new Font("Arial",Font.PLAIN, 50);
 			
-			font = new Font("Times New Roman", Font.PLAIN, 12);
+			font = new Font("Times New Roman", Font.PLAIN, 22);
 			
 		}
 		catch(Exception e) {
@@ -57,7 +57,7 @@ public class MenuState extends GameState {
 		// draw title
 		g.setColor(titleColor);
 		g.setFont(titleFont);
-		g.drawString("Brick Breaker", 80, 70);
+		g.drawString("Breaking Bad", 180, 100);
 		
 		// draw menu options
 		g.setFont(font);
@@ -66,9 +66,9 @@ public class MenuState extends GameState {
 				g.setColor(Color.CYAN);
 			}
 			else {
-				g.setColor(Color.BLACK);
+				g.setColor(Color.WHITE);
 			}
-			g.drawString(options[i], 140, 140 + i * 15);
+			g.drawString(options[i], 280, 220 + i * 30);
 		}
 		
 	}

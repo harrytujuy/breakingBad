@@ -14,7 +14,7 @@ import java.awt.Image;
  */
 public class Cuadro extends Base{
     
-    public Cuadro(int posX,int posY,Image image){
-		super(posX,posY,image);	
+    public Cuadro(){
+		super();	
     }
 }
