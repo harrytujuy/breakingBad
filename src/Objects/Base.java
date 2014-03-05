@@ -25,6 +25,10 @@ public class Base {
         protected int dy;
         protected boolean left;
         protected boolean right;
+        protected boolean upright;
+        protected boolean downright;
+        protected boolean upleft;
+        protected boolean downleft;
 	private ImageIcon icono;    //icono.
 	
 	/**
@@ -55,6 +59,19 @@ public class Base {
         }
         public void setRight(boolean b){
             right = b;
+        }
+        public void setUpRight(boolean b){
+            upright = b;
+        }
+        public void setDownRight(boolean b){
+            downright = b;
+        }
+        
+        public void setUpLeft(boolean b){
+            upleft = b;
+        }
+        public void setDownLeft(boolean b){
+            downleft = b;
         }
         
 	public void setPosX(int posX) {

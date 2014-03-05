@@ -40,6 +40,8 @@ public class Level1State extends GameState{
     private int dybola;
     private int velocidad;
     
+    boolean empieza = false;
+    
     
     public Level1State(GameStateManager gsm){
         
@@ -65,6 +67,7 @@ public class Level1State extends GameState{
         y_bola = 430;
         velocidad = 3;
         dxbola = dybola = 0;
+        bola = new Bola();
     }
     
     public void init(){
@@ -74,18 +77,28 @@ public class Level1State extends GameState{
     public void update(){
         bg.update();
         barra.update();
+        bola.update();
     }
     
     public void draw(Graphics2D g){
         bg.draw(g);
         barra.draw(g);
+        bola.draw(g);
     }
     
     public void keyPressed(int k){
+        
+        if(k == KeyEvent.VK_SPACE){
+            empieza = true;
+            bola.setUpRight(true);
+        }
+        if(empieza){
         if(k == KeyEvent.VK_LEFT)
             barra.setLeft(true);
         if(k == KeyEvent.VK_RIGHT)
             barra.setRight(true);
+        
+        }
     }
     
     public void keyReleased(int k){

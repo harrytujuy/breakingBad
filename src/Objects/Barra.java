@@ -53,6 +53,6 @@ public class Barra extends Base{
     }
     
     public void draw(Graphics2D g){
-        g.drawImage(imagen, getPosX()+GamePanel.WIDTH - 100, getPosY()+GamePanel.HEIGHT - 50, null);
+        g.drawImage(imagen, getPosX()+GamePanel.WIDTH - 330, getPosY()+GamePanel.HEIGHT - 50, null);
     }
 }
