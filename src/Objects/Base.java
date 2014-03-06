@@ -38,7 +38,7 @@ public class Base {
 	 * @param image es la <code>imagen</code> del objeto.
 	 */
 	public Base() {
-		
+		icono = new ImageIcon();
 	}
 	
 	/**
@@ -74,8 +74,16 @@ public class Base {
             downleft = b;
         }
         
+        public boolean getDownRight(){
+            return downright;
+        }
+        
+        public boolean getDownLeft(){
+            return downleft;
+        }
+        
 	public void setPosX(int posX) {
-		this.posX = posX;
+		this.x = posX;
 	}
 	
 	/**
@@ -83,7 +91,7 @@ public class Base {
 	 * @return posX es la <code>posicion en x</code> del objeto.
 	 */
 	public int getPosX() {
-		return posX;
+		return x;
 	}
 	
 	/**
@@ -91,7 +99,7 @@ public class Base {
 	 * @param posY es la <code>posicion en y</code> del objeto.
 	 */
 	public void setPosY(int posY) {
-		this.posY = posY;
+		this.y = posY;
 	}
 	
 	/**
@@ -99,7 +107,7 @@ public class Base {
 	 * @return posY es la <code>posicion en y</code> del objeto.
 	 */
 	public int getPosY() {
-		return posY;
+		return y;
 	}
         
         public void setPosition(int x, int y){
@@ -127,9 +135,9 @@ public class Base {
 	 * Metodo de acceso que regresa el ancho del icono 
 	 * @return un objeto de la clase <code>ImageIcon</code> que es el ancho del icono.
 	 */
-	public int getAncho() {
-		return icono.getIconWidth();
-	}
+	public int getAncho(){
+            return icono.getIconWidth();
+        }
 	
 	/**
 	 * Metodo de acceso que regresa el alto del icono 

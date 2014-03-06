@@ -38,6 +38,8 @@ public class Barra extends Base{
                 }catch(Exception e){
                     e.printStackTrace();
                 }
+                setPosX(330);
+                setPosY(430);
     }
     
     public void getNextPosition(){
@@ -50,9 +52,19 @@ public class Barra extends Base{
     public void update(){
         getNextPosition();
         setPosition(x,y);
+        checkCollision();
+    }
+    
+    public void checkCollision(){
+        if(getPosX() < 0){
+            left = false;
+            setPosX(getPosX());
+        }
+        if(getPosX() + getAncho() > GamePanel.WIDTH)
+            right = false;
     }
     
     public void draw(Graphics2D g){
-        g.drawImage(imagen, getPosX()+GamePanel.WIDTH - 330, getPosY()+GamePanel.HEIGHT - 50, null);
+        g.drawImage(imagen, getPosX(), getPosY(), null);
     }
 }

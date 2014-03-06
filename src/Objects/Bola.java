@@ -9,6 +9,7 @@ package Objects;
 import Main.GamePanel;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
@@ -27,6 +28,8 @@ public class Bola extends Base{
                 }catch(Exception e){
                     e.printStackTrace();
                 }
+                setPosX(350);
+                setPosY(408);
     }
     
     public void getNextPosition(){
@@ -49,35 +52,35 @@ public class Bola extends Base{
     }
     
     public void checkCollision(){
-        if(getPosX() < 100 && upleft){
+        if(getPosX() < 0 && upleft){
             upleft = false;
             upright = true;
         }
-        if(getPosX() < 100 && downleft){
+        if(getPosX() < 0 && downleft){
             downleft = false;
             downright = true;
         }
-        if(getPosY() < 100 && upleft){
+        if(getPosY() < 0 && upleft){
             upleft = false;
             downleft = true;
         }
-        if(getPosY() < -100 && upright){
+        if(getPosY() < 0 && upright){
             upright = false;
             downright = true;
         }
-        if(getPosX() + imagen.getWidth() > 100 && upright){
+        if(getPosX() + 20 > GamePanel.WIDTH && upright){
             upright = false;
             upleft = true;
         }
-        if(getPosX() + imagen.getWidth() > 100 && downright){
+        if(getPosX() + 20 > GamePanel.WIDTH && downright){
             downright = false;
             downleft = true;
         }
-        if(getPosY() + imagen.getHeight() > 100 && downleft){
+        if(getPosY() + 20 > GamePanel.HEIGHT && downleft){
             downleft = false;
             upleft = true;
         }
-        if(getPosY() + imagen.getHeight() > 100 && downright){
+        if(getPosY() + 20 > GamePanel.HEIGHT && downright){
             downright = false;
             upright = true;
         }
@@ -90,6 +93,6 @@ public class Bola extends Base{
     }
     
     public void draw(Graphics2D g){
-        g.drawImage(imagen, getPosX()+GamePanel.WIDTH - 300, getPosY()+GamePanel.HEIGHT - 71, null);
+        g.drawImage(imagen, getPosX(), getPosY(), null);
     }
 }

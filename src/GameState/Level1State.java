@@ -20,7 +20,7 @@ import java.awt.event.KeyEvent;
 public class Level1State extends GameState{
     
     private Background bg;
-    private Barra barra;
+    public Barra barra;
     private Bola bola;
     private Cuadro cuadro;
     private Graphics g2;
@@ -63,8 +63,8 @@ public class Level1State extends GameState{
         barra = new Barra();
         
         // bola
-        x_bola = 220;
-        y_bola = 430;
+        x_bola = 100;
+        y_bola = 100;
         velocidad = 3;
         dxbola = dybola = 0;
         bola = new Bola();
@@ -78,6 +78,17 @@ public class Level1State extends GameState{
         bg.update();
         barra.update();
         bola.update();
+        if(barra.intersecta(bola)){
+            System.out.println("Intersecta");
+            if(bola.getDownLeft()){
+                bola.setDownLeft(false);
+                bola.setUpLeft(true);
+            }
+            else if(bola.getDownRight()){
+                bola.setDownRight(false);
+                bola.setUpRight(true);
+            }
+        }
     }
     
     public void draw(Graphics2D g){
@@ -93,11 +104,10 @@ public class Level1State extends GameState{
             bola.setUpRight(true);
         }
         if(empieza){
-        if(k == KeyEvent.VK_LEFT)
-            barra.setLeft(true);
-        if(k == KeyEvent.VK_RIGHT)
-            barra.setRight(true);
-        
+            if(k == KeyEvent.VK_LEFT)
+                barra.setLeft(true);
+            if(k == KeyEvent.VK_RIGHT)
+                barra.setRight(true);
         }
     }
     
