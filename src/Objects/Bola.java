@@ -19,6 +19,7 @@ import javax.imageio.ImageIO;
 public class Bola extends Base{
     
     BufferedImage imagen;
+    SoundClip ball;
     
     public Bola(){
 		super();
@@ -29,6 +30,11 @@ public class Bola extends Base{
                 }
                 setPosX(140);
                 setPosY(408);
+                try{
+                    ball = new SoundClip("/Resources/Sounds/ball.wav");
+                }catch(Exception e){
+                        e.printStackTrace();
+                }
     }
     
     public void getNextPosition(){
@@ -54,34 +60,42 @@ public class Bola extends Base{
         if(getPosX() < 0 && upleft){
             upleft = false;
             upright = true;
+            ball.play();
         }
         if(getPosX() < 0 && downleft){
             downleft = false;
             downright = true;
+            ball.play();
         }
         if(getPosY() < 0 && upleft){
             upleft = false;
             downleft = true;
+            ball.play();
         }
         if(getPosY() < 0 && upright){
             upright = false;
             downright = true;
+            ball.play();
         }
         if(getPosX() + 20 > GamePanel.WIDTH && upright){
             upright = false;
             upleft = true;
+            ball.play();
         }
         if(getPosX() + 20 > GamePanel.WIDTH && downright){
             downright = false;
             downleft = true;
+            ball.play();
         }
         if(getPosY() + 20 > GamePanel.HEIGHT && downleft){
             downleft = false;
             upleft = true;
+            ball.play();
         }
         if(getPosY() + 20 > GamePanel.HEIGHT && downright){
             downright = false;
             upright = true;
+            ball.play();
         }
     }
     

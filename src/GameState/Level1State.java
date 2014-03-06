@@ -20,7 +20,7 @@ import java.awt.event.KeyEvent;
 public class Level1State extends GameState{
     
     private Background bg;
-    public Player1 barra;
+    public Player barra;
     private Bola bola;
     private Cuadro cuadro;
     private Graphics g2;
@@ -39,7 +39,7 @@ public class Level1State extends GameState{
             e.printStackTrace();
         }
         
-        barra = new Player1();
+        barra = new Player();
         bola = new Bola();
         
         empieza = false;
