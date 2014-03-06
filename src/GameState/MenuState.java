@@ -80,6 +80,7 @@ public class MenuState extends GameState {
 		}
 		if(currentChoice == 1) {
 			// 2 jugadores
+                        gsm.setState(GameStateManager.MULTIPLAYERSTATE);
 		}
 		if(currentChoice == 2) {
 			// ayuda

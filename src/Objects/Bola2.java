@@ -16,18 +16,18 @@ import javax.imageio.ImageIO;
  *
  * @author Szerch
  */
-public class Bola extends Base{
+public class Bola2 extends Base{
     
     BufferedImage imagen;
     
-    public Bola(){
+    public Bola2(){
 		super();
                 try{
                     imagen = ImageIO.read(getClass().getResourceAsStream("/Resources/Sprites/ball.gif"));
                 }catch(IOException e){
                     e.printStackTrace();
                 }
-                setPosX(140);
+                setPosX(450);
                 setPosY(408);
     }
     
@@ -51,11 +51,11 @@ public class Bola extends Base{
     }
     
     public void checkCollision(){
-        if(getPosX() < 0 && upleft){
+        if(getPosX() < GamePanel.WIDTH/2 && upleft){
             upleft = false;
             upright = true;
         }
-        if(getPosX() < 0 && downleft){
+        if(getPosX() < GamePanel.WIDTH/2 && downleft){
             downleft = false;
             downright = true;
         }

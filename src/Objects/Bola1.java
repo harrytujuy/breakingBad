@@ -16,11 +16,11 @@ import javax.imageio.ImageIO;
  *
  * @author Szerch
  */
-public class Bola extends Base{
+public class Bola1 extends Base{
     
     BufferedImage imagen;
     
-    public Bola(){
+    public Bola1(){
 		super();
                 try{
                     imagen = ImageIO.read(getClass().getResourceAsStream("/Resources/Sprites/ball.gif"));
@@ -67,11 +67,11 @@ public class Bola extends Base{
             upright = false;
             downright = true;
         }
-        if(getPosX() + 20 > GamePanel.WIDTH && upright){
+        if(getPosX() + 20 > GamePanel.WIDTH/2 && upright){
             upright = false;
             upleft = true;
         }
-        if(getPosX() + 20 > GamePanel.WIDTH && downright){
+        if(getPosX() + 20 > GamePanel.WIDTH/2 && downright){
             downright = false;
             downleft = true;
         }
