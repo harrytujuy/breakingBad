@@ -91,6 +91,14 @@ public class Base {
             return downleft;
         }
         
+        public boolean getUpRight(){
+            return upright;
+        }
+        
+        public boolean getUpLeft(){
+            return upleft;
+        }
+        
 	public void setPosX(int posX) {
 		this.x = posX;
 	}

@@ -3,19 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/moruse/Documents/Escuela/Quinto%20Semestre/Videojuego/breakingBad/src/Main/GamePanel.java</file>
-            <file>file:/C:/Users/moruse/Documents/Escuela/Quinto%20Semestre/Videojuego/breakingBad/src/Objects/Base.java</file>
-            <file>file:/C:/Users/moruse/Documents/Escuela/Quinto%20Semestre/Videojuego/breakingBad/src/Objects/Bola2.java</file>
-            <file>file:/C:/Users/moruse/Documents/Escuela/Quinto%20Semestre/Videojuego/breakingBad/src/GameState/GameStateManager.java</file>
-            <file>file:/C:/Users/moruse/Documents/Escuela/Quinto%20Semestre/Videojuego/breakingBad/src/GameState/MenuState.java</file>
-            <file>file:/C:/Users/moruse/Documents/Escuela/Quinto%20Semestre/Videojuego/breakingBad/src/Objects/Player1.java</file>
-            <file>file:/C:/Users/moruse/Documents/Escuela/Quinto%20Semestre/Videojuego/breakingBad/src/GameState/Level1State.java</file>
-            <file>file:/C:/Users/moruse/Documents/Escuela/Quinto%20Semestre/Videojuego/breakingBad/src/Main/Game.java</file>
-            <file>file:/C:/Users/moruse/Documents/Escuela/Quinto%20Semestre/Videojuego/breakingBad/src/Objects/Bola.java</file>
-            <file>file:/C:/Users/moruse/Documents/Escuela/Quinto%20Semestre/Videojuego/breakingBad/src/GameState/MultiplayerState.java</file>
-            <file>file:/C:/Users/moruse/Documents/Escuela/Quinto%20Semestre/Videojuego/breakingBad/src/Objects/Player2.java</file>
-            <file>file:/C:/Users/moruse/Documents/Escuela/Quinto%20Semestre/Videojuego/breakingBad/src/Objects/Player.java</file>
-            <file>file:/C:/Users/moruse/Documents/Escuela/Quinto%20Semestre/Videojuego/breakingBad/src/Objects/Cuadro.java</file>
+            <file>file:/C:/Users/Szerch/Documents/NetBeansProjects/breakingBad/breakingBad/src/GameState/MultiplayerState.java</file>
+            <file>file:/C:/Users/Szerch/Documents/NetBeansProjects/breakingBad/breakingBad/src/GameState/Level1State.java</file>
         </group>
     </open-files>
 </project-private>
