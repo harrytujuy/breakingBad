@@ -33,10 +33,20 @@ public class Player2 extends Base{
     }
     
     public void getNextPosition(){
-        if(left)
-            setPosX(getPosX() - 4);
-        else if(right)
-            setPosX(getPosX() + 4);
+        switch(direccion){
+            case 0:{
+                setPosX(getPosX());
+                break;
+            }
+            case 1:{
+                setPosX(getPosX() - 4);
+                break;
+            }
+            case 2:{
+                setPosX(getPosX() + 4);
+                break;
+            }
+        }
     }
     
     public void update(){
@@ -46,12 +56,14 @@ public class Player2 extends Base{
     }
     
     public void checkCollision(){
-        if(getPosX() < 0){
-            left = false;
-            setPosX(getPosX());
+        if(getPosX() < GamePanel.WIDTH/2 + 13){
+            setLeft(false);
+            direccion = 0;
         }
-        if(getPosX() + getAncho() > GamePanel.WIDTH)
-            right = false;
+        if(getPosX() + 93 > GamePanel.WIDTH){
+            setRight(false);
+            direccion = 0;
+        }
     }
     
     public void draw(Graphics2D g){

@@ -16,15 +16,18 @@ import java.awt.Rectangle;
 
 public class Base {
 	
-	private int posX;    //posicion en x.       
-	private int posY;	//posicion en y.
+	public int posX;    //posicion en x.       
+	public int posY;	//posicion en y.
+        public int posCX;
+        public int posCY;
         private int vel;
+        public int direccion;
         protected int x;
         protected int y;
         protected int dx;
         protected int dy;
-        protected boolean left;
-        protected boolean right;
+        protected boolean left = true;
+        protected boolean right = true;
         protected boolean upright;
         protected boolean downright;
         protected boolean upleft;
@@ -57,8 +60,14 @@ public class Base {
         public void setLeft(boolean b){
             left = b;
         }
+        public boolean getLeft(){
+            return left;
+        }
         public void setRight(boolean b){
             right = b;
+        }
+        public boolean getRight(){
+            return right;
         }
         public void setUpRight(boolean b){
             upright = b;

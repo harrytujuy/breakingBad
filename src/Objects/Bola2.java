@@ -57,12 +57,12 @@ public class Bola2 extends Base{
     }
     
     public void checkCollision(){
-        if(getPosX() < GamePanel.WIDTH/2 && upleft){
+        if(getPosX() < GamePanel.WIDTH/2 + 13 && upleft){
             upleft = false;
             upright = true;
             ball.play();
         }
-        if(getPosX() < GamePanel.WIDTH/2 && downleft){
+        if(getPosX() < GamePanel.WIDTH/2 + 13 && downleft){
             downleft = false;
             downright = true;
             ball.play();

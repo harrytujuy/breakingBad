@@ -97,6 +97,14 @@ public class Bola extends Base{
             upright = true;
             ball.play();
         }
+        /*if(bola.getPosX() > barra.getPosX() && bola.getPosX() < barra.getPosX() + barra.getAncho() && bola.getPosY() <= barra.getPosY() && bola.getDownRight()){
+            bola.setDownRight(false);
+            bola.setUpRight(true);
+        }
+        if(bola.getPosX() > barra.getPosX() && bola.getPosX() < barra.getPosX() + barra.getAncho() && bola.getPosY() <= barra.getPosY() && bola.getDownLeft()){
+            bola.setDownLeft(false);
+            bola.setUpLeft(true);
+        }*/
     }
     
     public void update(){

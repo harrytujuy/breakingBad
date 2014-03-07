@@ -7,6 +7,10 @@
 package Objects;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.awt.Graphics2D;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -14,7 +18,18 @@ import java.awt.Image;
  */
 public class Cuadro extends Base{
     
+    BufferedImage imagen;
+    
     public Cuadro(){
-		super();	
+		super();
+                try{
+                    imagen = ImageIO.read(getClass().getResourceAsStream("/Resources/Sprites/cuadro1.jpg"));
+                }catch(IOException e){
+                    e.printStackTrace();
+                }
+    }
+    
+    public void draw(Graphics2D g){
+        g.drawImage(imagen, getPosX(), getPosY(), null);
     }
 }
