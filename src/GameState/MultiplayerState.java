@@ -15,6 +15,7 @@ import Objects.*;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.LinkedList;
 
 public class MultiplayerState extends GameState{
     
@@ -24,7 +25,10 @@ public class MultiplayerState extends GameState{
     private Bola1 bola1;
     private Bola2 bola2;
     private Cuadro cuadro;
-    private Graphics g2;
+    private LinkedList<Cuadro> lista1;
+    private LinkedList<Cuadro> lista2;
+    SoundClip ball;
+    SoundClip breaking;
     
     boolean empieza;
     
@@ -42,6 +46,130 @@ public class MultiplayerState extends GameState{
         p2 = new Player2();
         bola1 = new Bola1();
         bola2 = new Bola2();
+        
+        lista1 = new LinkedList();
+        lista2 = new LinkedList();
+        
+        try{
+            ball = new SoundClip("/Resources/Sounds/ball.wav");
+            breaking = new SoundClip("/Resources/Sounds/cuadro.wav");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        cuadro = new Cuadro();
+        cuadro.setPosX(40);
+        cuadro.setPosY(100);
+        lista1.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(80);
+        cuadro.setPosY(100);
+        lista1.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(120);
+        cuadro.setPosY(100);
+        lista1.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(160);
+        cuadro.setPosY(100);
+        lista1.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(200);
+        cuadro.setPosY(100);
+        lista1.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(240);
+        cuadro.setPosY(100);
+        lista1.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(120);
+        cuadro.setPosY(180);
+        lista1.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(160);
+        cuadro.setPosY(180);
+        lista1.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(40);
+        cuadro.setPosY(260);
+        lista1.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(80);
+        cuadro.setPosY(260);
+        lista1.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(120);
+        cuadro.setPosY(260);
+        lista1.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(160);
+        cuadro.setPosY(260);
+        lista1.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(200);
+        cuadro.setPosY(260);
+        lista1.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(240);
+        cuadro.setPosY(260);
+        lista1.add(cuadro);
+        
+        cuadro = new Cuadro();
+        cuadro.setPosX(360);
+        cuadro.setPosY(100);
+        lista2.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(400);
+        cuadro.setPosY(100);
+        lista2.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(440);
+        cuadro.setPosY(100);
+        lista2.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(480);
+        cuadro.setPosY(100);
+        lista2.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(520);
+        cuadro.setPosY(100);
+        lista2.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(560);
+        cuadro.setPosY(100);
+        lista2.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(440);
+        cuadro.setPosY(180);
+        lista2.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(480);
+        cuadro.setPosY(180);
+        lista2.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(360);
+        cuadro.setPosY(260);
+        lista2.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(400);
+        cuadro.setPosY(260);
+        lista2.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(440);
+        cuadro.setPosY(260);
+        lista2.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(480);
+        cuadro.setPosY(260);
+        lista2.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(520);
+        cuadro.setPosY(260);
+        lista2.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(560);
+        cuadro.setPosY(260);
+        lista2.add(cuadro);
         
         empieza = false;
     }
@@ -62,22 +190,66 @@ public class MultiplayerState extends GameState{
         if(bola1.getPosX() > p1.getPosX() && bola1.getPosX() + 20 < p1.getPosX() + 93 && bola1.getPosY() + 20 >= p1.getPosY() && bola1.getDownRight()){
             bola1.setDownRight(false);
             bola1.setUpRight(true);
-            //ball.play();
+            ball.play();
         }
         if(bola1.getPosX() > p1.getPosX() && bola1.getPosX() + 20 < p1.getPosX() + 93 && bola1.getPosY() + 20 == p1.getPosY() && bola1.getDownLeft()){
             bola1.setDownLeft(false);
             bola1.setUpLeft(true);
-            //ball.play();
+            ball.play();
         }
         if(bola2.getPosX() > p2.getPosX() && bola2.getPosX() + 20 < p2.getPosX() + 93 && bola2.getPosY() + 20 >= p2.getPosY() && bola2.getDownRight()){
             bola2.setDownRight(false);
             bola2.setUpRight(true);
-            //ball.play();
+            ball.play();
         }
         if(bola2.getPosX() > p2.getPosX() && bola2.getPosX() + 20 < p2.getPosX() + 93 && bola2.getPosY() + 20 == p2.getPosY() && bola2.getDownLeft()){
             bola2.setDownLeft(false);
             bola2.setUpLeft(true);
-            //ball.play();
+            ball.play();
+        }
+        for(Cuadro cuadro: lista1){
+            if(bola1.getPosX() > cuadro.getPosX() && bola1.getPosX() + 20 < cuadro.getPosX() + 40 && bola1.getPosY() < cuadro.getPosY() && bola1.getPosY() + 20 >= cuadro.getPosY() && bola1.getDownLeft()){
+                bola1.setDownLeft(false);
+                bola1.setUpLeft(true);
+                breaking.play();
+            }
+            if(bola1.getPosX() > cuadro.getPosX() && bola1.getPosX() + 20 < cuadro.getPosX() + 40 && bola1.getPosY() < cuadro.getPosY() && bola1.getPosY() + 20 >= cuadro.getPosY() && bola1.getDownRight()){               
+                bola1.setDownRight(false);
+                bola1.setUpRight(true);
+                breaking.play();
+            }
+            if(bola1.getPosX() > cuadro.getPosX() && bola1.getPosX() + 20 < cuadro.getPosX() + 40 && bola1.getPosY() > cuadro.getPosY() && bola1.getPosY() < cuadro.getPosY() + 40 && bola1.getUpLeft()){                
+                bola1.setUpLeft(false);
+                bola1.setDownLeft(true);
+                breaking.play();
+            }
+            if(bola1.getPosX() > cuadro.getPosX() && bola1.getPosX() + 20 < cuadro.getPosX() + 40 && bola1.getPosY() > cuadro.getPosY() && bola1.getPosY() < cuadro.getPosY() + 40 && bola1.getUpRight()){               
+                bola1.setUpRight(false);
+                bola1.setDownRight(true);
+                breaking.play();
+            }
+        }
+        for(Cuadro cuadro: lista2){
+            if(bola2.getPosX() > cuadro.getPosX() && bola2.getPosX() + 20 < cuadro.getPosX() + 40 && bola2.getPosY() < cuadro.getPosY() && bola2.getPosY() + 20 >= cuadro.getPosY() && bola2.getDownLeft()){
+                bola2.setDownLeft(false);
+                bola2.setUpLeft(true);
+                breaking.play();
+            }
+            if(bola2.getPosX() > cuadro.getPosX() && bola2.getPosX() + 20 < cuadro.getPosX() + 40 && bola2.getPosY() < cuadro.getPosY() && bola2.getPosY() + 20 >= cuadro.getPosY() && bola2.getDownRight()){               
+                bola2.setDownRight(false);
+                bola2.setUpRight(true);
+                breaking.play();
+            }
+            if(bola2.getPosX() > cuadro.getPosX() && bola2.getPosX() + 20 < cuadro.getPosX() + 40 && bola2.getPosY() > cuadro.getPosY() && bola2.getPosY() < cuadro.getPosY() + 40 && bola2.getUpLeft()){                
+                bola2.setUpLeft(false);
+                bola2.setDownLeft(true);
+                breaking.play();
+            }
+            if(bola2.getPosX() > cuadro.getPosX() && bola1.getPosX() + 20 < cuadro.getPosX() + 40 && bola2.getPosY() > cuadro.getPosY() && bola2.getPosY() < cuadro.getPosY() + 40 && bola2.getUpRight()){               
+                bola2.setUpRight(false);
+                bola2.setDownRight(true);
+                breaking.play();
+            }
         }
     }
     
@@ -87,6 +259,10 @@ public class MultiplayerState extends GameState{
         p2.draw(g);
         bola1.draw(g);
         bola2.draw(g);
+        for(Cuadro cuadro: lista1)
+            cuadro.draw(g);
+        for(Cuadro cuadro: lista2)
+            cuadro.draw(g);
     }
     
     public void keyPressed(int k){
@@ -96,33 +272,33 @@ public class MultiplayerState extends GameState{
             empieza = true;
         }
         if(empieza){
-            if(k == KeyEvent.VK_LEFT && p1.getLeft()){
-                p1.setRight(true);
-                p1.direccion = 1;
-            }
-            if(k == KeyEvent.VK_RIGHT && p1.getRight()){
-                p1.setLeft(true);
-                p1.direccion = 2;
-            }
-            if(k == KeyEvent.VK_A && p2.getLeft()){
+            if(k == KeyEvent.VK_LEFT && p2.getLeft()){
                 p2.setRight(true);
                 p2.direccion = 1;
             }
-            if(k == KeyEvent.VK_D && p2.getRight()){
+            if(k == KeyEvent.VK_RIGHT && p2.getRight()){
                 p2.setLeft(true);
                 p2.direccion = 2;
+            }
+            if(k == KeyEvent.VK_A && p1.getLeft()){
+                p1.setRight(true);
+                p1.direccion = 1;
+            }
+            if(k == KeyEvent.VK_D && p1.getRight()){
+                p1.setLeft(true);
+                p1.direccion = 2;
             }
         }
     }
     
     public void keyReleased(int k){
         if(k == KeyEvent.VK_LEFT)
-            p1.direccion = 0;
+            p2.direccion = 0;
         if(k == KeyEvent.VK_RIGHT)
-            p1.direccion = 0;
+            p2.direccion = 0;
         if(k == KeyEvent.VK_A)
-            p2.direccion = 0;
+            p1.direccion = 0;
         if(k == KeyEvent.VK_D)
-            p2.direccion = 0;
+            p1.direccion = 0;
     }
 }

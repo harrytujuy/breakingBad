@@ -54,6 +54,22 @@ public class Level1State extends GameState{
         lista = new LinkedList();
         
                 cuadro = new Cuadro();
+                cuadro.setPosX(60);
+                cuadro.setPosY(40);
+                lista.add(cuadro);
+                cuadro = new Cuadro();
+                cuadro.setPosX(100);
+                cuadro.setPosY(40);
+                lista.add(cuadro);
+                cuadro = new Cuadro();
+                cuadro.setPosX(140);
+                cuadro.setPosY(40);
+                lista.add(cuadro);
+                cuadro = new Cuadro();
+                cuadro.setPosX(60);
+                cuadro.setPosY(80);
+                lista.add(cuadro);
+                cuadro = new Cuadro();
                 cuadro.setPosX(220);
                 cuadro.setPosY(100);
                 lista.add(cuadro);
@@ -73,9 +89,9 @@ public class Level1State extends GameState{
                 cuadro.setPosX(380);
                 cuadro.setPosY(100);
                 lista.add(cuadro);
-                cuadro = new Cuadro(); //Carga de la imagen a los 10 Malos
-                cuadro.setPosX(100); //Ingreso de la ubicación en X del Malo
-                cuadro.setPosY(180); //Ingreso de la ubicacion en Y del Malo
+                cuadro = new Cuadro();
+                cuadro.setPosX(100);
+                cuadro.setPosY(180);
                 lista.add(cuadro);
                 cuadro = new Cuadro();
                 cuadro.setPosX(140);
@@ -117,6 +133,42 @@ public class Level1State extends GameState{
                 cuadro.setPosX(500);
                 cuadro.setPosY(180);
                 lista.add(cuadro);
+                cuadro = new Cuadro();
+                cuadro.setPosX(460);
+                cuadro.setPosY(40);
+                lista.add(cuadro);
+                cuadro = new Cuadro();
+                cuadro.setPosX(500);
+                cuadro.setPosY(40);
+                lista.add(cuadro);
+                cuadro = new Cuadro();
+                cuadro.setPosX(540);
+                cuadro.setPosY(40);
+                lista.add(cuadro);
+                cuadro = new Cuadro();
+                cuadro.setPosX(540);
+                cuadro.setPosY(80);
+                lista.add(cuadro);
+                cuadro = new Cuadro();
+                cuadro.setPosX(220);
+                cuadro.setPosY(260);
+                lista.add(cuadro);
+                cuadro = new Cuadro();
+                cuadro.setPosX(260);
+                cuadro.setPosY(260);
+                lista.add(cuadro);
+                cuadro = new Cuadro();
+                cuadro.setPosX(300);
+                cuadro.setPosY(260);
+                lista.add(cuadro);
+                cuadro = new Cuadro();
+                cuadro.setPosX(340);
+                cuadro.setPosY(260);
+                lista.add(cuadro);
+                cuadro = new Cuadro();
+                cuadro.setPosX(380);
+                cuadro.setPosY(260);
+                lista.add(cuadro);
       
         empieza = false;
     }
@@ -148,6 +200,7 @@ public class Level1State extends GameState{
                 bola.setDownLeft(false);
                 bola.setUpLeft(true);
                 breaking.play();
+                //lista.remove(cuadro); ?
             }
             if(bola.getPosX() > cuadro.getPosX() && bola.getPosX() + 20 < cuadro.getPosX() + 40 && bola.getPosY() < cuadro.getPosY() && bola.getPosY() + 20 >= cuadro.getPosY() && bola.getDownRight()){               
                 bola.setDownRight(false);
