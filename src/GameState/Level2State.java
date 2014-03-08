@@ -6,21 +6,21 @@
 
 package GameState;
 
+import Objects.Bola;
+import Objects.Cuadro;
+import Objects.Player;
+import Objects.SoundClip;
+import TileMap.Background;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
+import java.util.LinkedList;
+
 /**
  *
  * @author Szerch
  */
-
-import TileMap.Background;
-import Objects.*;
-
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import Main.GamePanel;
-import java.util.LinkedList;
-
-public class Level1State extends GameState{
-    
+public class Level2State extends GameState{
     private Background bg;
     private Player barra;
     private Bola bola;
@@ -35,12 +35,12 @@ public class Level1State extends GameState{
     private SoundClip breaking;
     
     
-    public Level1State(GameStateManager gsm){
+    public Level2State(GameStateManager gsm){
         
         this.gsm = gsm;
         
         try{
-            bg = new Background("/Resources/Backgrounds/level1.jpg",1);
+            bg = new Background("/Resources/Backgrounds/level2.jpg",1);
             
         }catch(Exception e){
             e.printStackTrace();
@@ -56,122 +56,118 @@ public class Level1State extends GameState{
         bola = new Bola();
         lista = new LinkedList();
         
-                cuadro = new Cuadro();
-                cuadro.setPosX(60);
-                cuadro.setPosY(40);
-                lista.add(cuadro);
-                cuadro = new Cuadro();
-                cuadro.setPosX(100);
-                cuadro.setPosY(40);
-                lista.add(cuadro);
-                cuadro = new Cuadro();
-                cuadro.setPosX(140);
-                cuadro.setPosY(40);
-                lista.add(cuadro);
-                cuadro = new Cuadro();
-                cuadro.setPosX(60);
-                cuadro.setPosY(80);
-                lista.add(cuadro);
-                cuadro = new Cuadro();
-                cuadro.setPosX(220);
-                cuadro.setPosY(100);
-                lista.add(cuadro);
-                cuadro = new Cuadro();
-                cuadro.setPosX(260);
-                cuadro.setPosY(100);
-                lista.add(cuadro);
-                cuadro = new Cuadro();
-                cuadro.setPosX(300);
-                cuadro.setPosY(100);
-                lista.add(cuadro);
-                cuadro = new Cuadro();
-                cuadro.setPosX(340);
-                cuadro.setPosY(100);
-                lista.add(cuadro);
-                cuadro = new Cuadro();
-                cuadro.setPosX(380);
-                cuadro.setPosY(100);
-                lista.add(cuadro);
-                cuadro = new Cuadro();
-                cuadro.setPosX(100);
-                cuadro.setPosY(180);
-                lista.add(cuadro);
-                cuadro = new Cuadro();
-                cuadro.setPosX(140);
-                cuadro.setPosY(180);
-                lista.add(cuadro);
-                cuadro = new Cuadro();
-                cuadro.setPosX(180);
-                cuadro.setPosY(180);
-                lista.add(cuadro);
-                cuadro = new Cuadro();
-                cuadro.setPosX(220);
-                cuadro.setPosY(180);
-                lista.add(cuadro);
-                cuadro = new Cuadro();
-                cuadro.setPosX(260);
-                cuadro.setPosY(180);
-                lista.add(cuadro);
-                cuadro = new Cuadro();
-                cuadro.setPosX(300);
-                cuadro.setPosY(180);
-                lista.add(cuadro);
-                cuadro = new Cuadro();
-                cuadro.setPosX(340);
-                cuadro.setPosY(180);
-                lista.add(cuadro);
-                cuadro = new Cuadro();
-                cuadro.setPosX(380);
-                cuadro.setPosY(180);
-                lista.add(cuadro);
-                cuadro = new Cuadro();
-                cuadro.setPosX(420);
-                cuadro.setPosY(180);
-                lista.add(cuadro);
-                cuadro = new Cuadro();
-                cuadro.setPosX(460);
-                cuadro.setPosY(180);
-                lista.add(cuadro);
-                cuadro = new Cuadro();
-                cuadro.setPosX(500);
-                cuadro.setPosY(180);
-                lista.add(cuadro);
-                cuadro = new Cuadro();
-                cuadro.setPosX(460);
-                cuadro.setPosY(40);
-                lista.add(cuadro);
-                cuadro = new Cuadro();
-                cuadro.setPosX(500);
-                cuadro.setPosY(40);
-                lista.add(cuadro);
-                cuadro = new Cuadro();
-                cuadro.setPosX(540);
-                cuadro.setPosY(40);
-                lista.add(cuadro);
-                cuadro = new Cuadro();
-                cuadro.setPosX(540);
-                cuadro.setPosY(80);
-                lista.add(cuadro);
-                cuadro = new Cuadro();
-                cuadro.setPosX(220);
-                cuadro.setPosY(260);
-                lista.add(cuadro);
-                cuadro = new Cuadro();
-                cuadro.setPosX(260);
-                cuadro.setPosY(260);
-                lista.add(cuadro);
-                cuadro = new Cuadro();
-                cuadro.setPosX(300);
-                cuadro.setPosY(260);
-                lista.add(cuadro);
-                cuadro = new Cuadro();
-                cuadro.setPosX(340);
-                cuadro.setPosY(260);
-                lista.add(cuadro);
-                cuadro = new Cuadro();
-                cuadro.setPosX(380);
-                cuadro.setPosY(260);
-                lista.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(80);
+        cuadro.setPosY(60);
+        lista.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(80);
+        cuadro.setPosY(100);
+        lista.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(80);
+        cuadro.setPosY(140);
+        lista.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(80);
+        cuadro.setPosY(180);
+        lista.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(80);
+        cuadro.setPosY(220);
+        lista.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(80);
+        cuadro.setPosY(260);
+        lista.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(80);
+        cuadro.setPosY(300);
+        lista.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(120);
+        cuadro.setPosY(60);
+        lista.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(120);
+        cuadro.setPosY(180);
+        lista.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(120);
+        cuadro.setPosY(300);
+        lista.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(160);
+        cuadro.setPosY(60);
+        lista.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(160);
+        cuadro.setPosY(180);
+        lista.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(160);
+        cuadro.setPosY(300);
+        lista.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(200);
+        cuadro.setPosY(100);
+        lista.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(200);
+        cuadro.setPosY(140);
+        lista.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(200);
+        cuadro.setPosY(220);
+        lista.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(200);
+        cuadro.setPosY(260);
+        lista.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(280);
+        cuadro.setPosY(180);
+        lista.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(280);
+        cuadro.setPosY(220);
+        lista.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(280);
+        cuadro.setPosY(260);
+        lista.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(280);
+        cuadro.setPosY(300);
+        lista.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(320);
+        cuadro.setPosY(220);
+        lista.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(360);
+        cuadro.setPosY(180);
+        lista.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(400);
+        cuadro.setPosY(220);
+        lista.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(480);
+        cuadro.setPosY(260);
+        lista.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(520);
+        cuadro.setPosY(260);
+        lista.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(480);
+        cuadro.setPosY(300);
+        lista.add(cuadro);
+        cuadro = new Cuadro();
+        cuadro.setPosX(520);
+        cuadro.setPosY(300);
+        lista.add(cuadro);
         
         pausa = true;
         empieza = false;
@@ -179,6 +175,7 @@ public class Level1State extends GameState{
         bola.setMovement(true);
         vidas = 3;
         cont = 0;
+        
     }
     
     public void init(){
@@ -196,8 +193,8 @@ public class Level1State extends GameState{
                 gsm.setState(GameStateManager.MENUSTATE);
             bola.setPierdeVidas(false);
         }
-        if(cont == 29){
-            gsm.setState(GameStateManager.LEVEL2STATE);
+        if(cont == lista.size()){
+            gsm.setState(GameStateManager.MENUSTATE);
         }
     }
     

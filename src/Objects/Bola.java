@@ -18,8 +18,10 @@ import javax.imageio.ImageIO;
  */
 public class Bola extends Base{
     
-    BufferedImage imagen;
-    SoundClip ball;
+    private BufferedImage imagen;
+    private SoundClip ball;
+    private SoundClip fall;
+    private boolean pierde;
     
     public Bola(){
 		super();
@@ -32,9 +34,11 @@ public class Bola extends Base{
                 setPosY(408);
                 try{
                     ball = new SoundClip("/Resources/Sounds/ball.wav");
+                    fall = new SoundClip("/Resources/Sounds/fall.wav");
                 }catch(Exception e){
                         e.printStackTrace();
                 }
+                pierde = false;
     }
     
     public void getNextPosition(){
@@ -87,15 +91,16 @@ public class Bola extends Base{
             downleft = true;
             ball.play();
         }
-        if(getPosY() + 20 > GamePanel.HEIGHT && downleft){
-            downleft = false;
-            upleft = true;
-            ball.play();
-        }
-        if(getPosY() + 20 > GamePanel.HEIGHT && downright){
-            downright = false;
-            upright = true;
-            ball.play();
+        if(getPosY() + 20 > GamePanel.HEIGHT){
+            setPosX(getPosX());
+            setPosY(getPosY() - 60);
+            if(downright)
+                upright = true;
+            else
+                upleft = true;
+            downright = downleft = false;
+            fall.play();
+            pierde = true;
         }
         /*if(bola.getPosX() > barra.getPosX() && bola.getPosX() < barra.getPosX() + barra.getAncho() && bola.getPosY() <= barra.getPosY() && bola.getDownRight()){
             bola.setDownRight(false);
@@ -107,10 +112,20 @@ public class Bola extends Base{
         }*/
     }
     
+    public boolean getPierdeVidas(){
+        return pierde;
+    }
+    
+    public void setPierdeVidas(boolean b){
+        pierde = b;
+    }
+    
     public void update(){
-        getNextPosition();
-        setPosition(x,y);
-        checkCollision();
+        if(getMovement()){
+            getNextPosition();
+            setPosition(x,y);
+            checkCollision();
+        }
     }
     
     public void draw(Graphics2D g){

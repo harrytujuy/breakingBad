@@ -20,6 +20,7 @@ public class Bola1 extends Base{
     
     BufferedImage imagen;
     SoundClip ball;
+    SoundClip fall;
     
     public Bola1(){
 		super();
@@ -32,6 +33,7 @@ public class Bola1 extends Base{
                 setPosY(408);
                 try{
                     ball = new SoundClip("/Resources/Sounds/ball.wav");
+                    fall = new SoundClip("/Resources/Sounds/fall.wav");
                 }catch(Exception e){
                         e.printStackTrace();
                 }
@@ -39,20 +41,20 @@ public class Bola1 extends Base{
     
     public void getNextPosition(){
         if(upleft){
-            setPosX(getPosX() - 2);
-            setPosY(getPosY() - 2);
+            setPosX(getPosX() - 3);
+            setPosY(getPosY() - 3);
         }
         else if(downleft){
-            setPosX(getPosX() - 2);
-            setPosY(getPosY() + 2);
+            setPosX(getPosX() - 3);
+            setPosY(getPosY() + 3);
         }
         else if(upright){
-            setPosX(getPosX() + 2);
-            setPosY(getPosY() - 2);
+            setPosX(getPosX() + 3);
+            setPosY(getPosY() - 3);
         }
         else if(downright){
-            setPosX(getPosX() + 2);
-            setPosY(getPosY() + 2);
+            setPosX(getPosX() + 3);
+            setPosY(getPosY() + 3);
         }
     }
     
@@ -87,22 +89,24 @@ public class Bola1 extends Base{
             downleft = true;
             ball.play();
         }
-        if(getPosY() + 20 > GamePanel.HEIGHT && downleft){
-            downleft = false;
-            upleft = true;
-            ball.play();
-        }
-        if(getPosY() + 20 > GamePanel.HEIGHT && downright){
-            downright = false;
-            upright = true;
-            ball.play();
+        if(getPosY() + 20 > GamePanel.HEIGHT){
+            setPosX(getPosX());
+            setPosY(getPosY() - 60);
+            if(downright)
+                upright = true;
+            else
+                upleft = true;
+            downright = downleft = false;
+            fall.play();
         }
     }
     
     public void update(){
-        getNextPosition();
-        setPosition(x,y);
-        checkCollision();
+        if(getMovement()){
+            getNextPosition();
+            setPosition(x,y);
+            checkCollision();
+        }
     }
     
     public void draw(Graphics2D g){

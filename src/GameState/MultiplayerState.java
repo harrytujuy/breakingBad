@@ -30,7 +30,11 @@ public class MultiplayerState extends GameState{
     SoundClip ball;
     SoundClip breaking;
     
-    boolean empieza;
+    private boolean empieza;
+    private boolean pausa;
+    private int cont1;
+    private int cont2;
+    private boolean gana;
     
     public MultiplayerState(GameStateManager gsm){
         this.gsm = gsm;
@@ -171,7 +175,16 @@ public class MultiplayerState extends GameState{
         cuadro.setPosY(260);
         lista2.add(cuadro);
         
+        pausa = true;
+        gana = false;
         empieza = false;
+        
+        p1.setMovement(true);
+        p2.setMovement(true);
+        bola1.setMovement(true);
+        bola2.setMovement(true);
+        
+        cont1 = cont2 = 0;
     }
     
     public void init(){
@@ -184,6 +197,8 @@ public class MultiplayerState extends GameState{
         bola1.update();
         bola2.update();
         checaColision();
+        if(cont1 == 14 || cont2 == 14)
+            gana = true;
     }
     
     public void checaColision(){
@@ -212,21 +227,33 @@ public class MultiplayerState extends GameState{
                 bola1.setDownLeft(false);
                 bola1.setUpLeft(true);
                 breaking.play();
+                cuadro.setPosX(700);
+                cuadro.setPosY(700);
+                cont1++;
             }
             if(bola1.getPosX() > cuadro.getPosX() && bola1.getPosX() + 20 < cuadro.getPosX() + 40 && bola1.getPosY() < cuadro.getPosY() && bola1.getPosY() + 20 >= cuadro.getPosY() && bola1.getDownRight()){               
                 bola1.setDownRight(false);
                 bola1.setUpRight(true);
                 breaking.play();
+                cuadro.setPosX(700);
+                cuadro.setPosY(700);
+                cont1++;
             }
             if(bola1.getPosX() > cuadro.getPosX() && bola1.getPosX() + 20 < cuadro.getPosX() + 40 && bola1.getPosY() > cuadro.getPosY() && bola1.getPosY() < cuadro.getPosY() + 40 && bola1.getUpLeft()){                
                 bola1.setUpLeft(false);
                 bola1.setDownLeft(true);
                 breaking.play();
+                cuadro.setPosX(700);
+                cuadro.setPosY(700);
+                cont1++;
             }
             if(bola1.getPosX() > cuadro.getPosX() && bola1.getPosX() + 20 < cuadro.getPosX() + 40 && bola1.getPosY() > cuadro.getPosY() && bola1.getPosY() < cuadro.getPosY() + 40 && bola1.getUpRight()){               
                 bola1.setUpRight(false);
                 bola1.setDownRight(true);
                 breaking.play();
+                cuadro.setPosX(700);
+                cuadro.setPosY(700);
+                cont1++;
             }
         }
         for(Cuadro cuadro: lista2){
@@ -234,21 +261,33 @@ public class MultiplayerState extends GameState{
                 bola2.setDownLeft(false);
                 bola2.setUpLeft(true);
                 breaking.play();
+                cuadro.setPosX(700);
+                cuadro.setPosY(700);
+                cont2++;
             }
             if(bola2.getPosX() > cuadro.getPosX() && bola2.getPosX() + 20 < cuadro.getPosX() + 40 && bola2.getPosY() < cuadro.getPosY() && bola2.getPosY() + 20 >= cuadro.getPosY() && bola2.getDownRight()){               
                 bola2.setDownRight(false);
                 bola2.setUpRight(true);
                 breaking.play();
+                cuadro.setPosX(700);
+                cuadro.setPosY(700);
+                cont2++;
             }
             if(bola2.getPosX() > cuadro.getPosX() && bola2.getPosX() + 20 < cuadro.getPosX() + 40 && bola2.getPosY() > cuadro.getPosY() && bola2.getPosY() < cuadro.getPosY() + 40 && bola2.getUpLeft()){                
                 bola2.setUpLeft(false);
                 bola2.setDownLeft(true);
                 breaking.play();
+                cuadro.setPosX(700);
+                cuadro.setPosY(700);
+                cont2++;
             }
             if(bola2.getPosX() > cuadro.getPosX() && bola1.getPosX() + 20 < cuadro.getPosX() + 40 && bola2.getPosY() > cuadro.getPosY() && bola2.getPosY() < cuadro.getPosY() + 40 && bola2.getUpRight()){               
                 bola2.setUpRight(false);
                 bola2.setDownRight(true);
                 breaking.play();
+                cuadro.setPosX(700);
+                cuadro.setPosY(700);
+                cont2++;
             }
         }
     }
@@ -263,6 +302,13 @@ public class MultiplayerState extends GameState{
             cuadro.draw(g);
         for(Cuadro cuadro: lista2)
             cuadro.draw(g);
+        if(gana){
+            g.setColor(Color.BLACK);
+            if(cont1 == 14)
+                g.drawString("Gana jugador 1!", 200, 200);
+            else
+                g.drawString("Gana jugador 2!", 200, 200);
+        }
     }
     
     public void keyPressed(int k){
@@ -287,6 +333,13 @@ public class MultiplayerState extends GameState{
             if(k == KeyEvent.VK_D && p1.getRight()){
                 p1.setLeft(true);
                 p1.direccion = 2;
+            }
+            if(k == KeyEvent.VK_P){
+                pausa = !pausa;
+                p1.setMovement(pausa);
+                p2.setMovement(pausa);
+                bola1.setMovement(pausa);
+                bola2.setMovement(pausa);
             }
         }
     }

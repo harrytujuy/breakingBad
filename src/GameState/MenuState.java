@@ -83,7 +83,7 @@ public class MenuState extends GameState {
                         gsm.setState(GameStateManager.MULTIPLAYERSTATE);
 		}
 		if(currentChoice == 2) {
-			// ayuda
+			gsm.setState(GameStateManager.HELPSTATE);
 		}
                 if(currentChoice == 3){
                     //salir

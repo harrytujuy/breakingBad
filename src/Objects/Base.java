@@ -32,6 +32,7 @@ public class Base {
         protected boolean downright;
         protected boolean upleft;
         protected boolean downleft;
+        protected boolean movement;
 	private ImageIcon icono;    //icono.
 	
 	/**
@@ -97,6 +98,14 @@ public class Base {
         
         public boolean getUpLeft(){
             return upleft;
+        }
+        
+        public void setMovement(boolean b){
+            movement = b;
+        }
+        
+        public boolean getMovement(){
+            return movement;
         }
         
 	public void setPosX(int posX) {

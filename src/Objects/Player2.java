@@ -50,9 +50,11 @@ public class Player2 extends Base{
     }
     
     public void update(){
-        getNextPosition();
-        setPosition(x,y);
-        checkCollision();
+        if(getMovement()){
+            getNextPosition();
+            setPosition(x,y);
+            checkCollision();
+        }
     }
     
     public void checkCollision(){

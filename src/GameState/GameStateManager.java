@@ -10,6 +10,8 @@ public class GameStateManager {
 	public static final int MENUSTATE = 0;
 	public static final int LEVEL1STATE = 1;
         public static final int MULTIPLAYERSTATE = 2;
+        public static final int HELPSTATE = 3;
+        public static final int LEVEL2STATE = 4;
 	
 	public GameStateManager() {
 		
@@ -19,6 +21,8 @@ public class GameStateManager {
 		gameStates.add(new MenuState(this));
                 gameStates.add(new Level1State(this));
                 gameStates.add(new MultiplayerState(this));
+                gameStates.add(new HelpState(this));
+                gameStates.add(new Level2State(this));
 		
 	}
 	

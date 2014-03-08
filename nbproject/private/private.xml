@@ -4,7 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Szerch/Documents/NetBeansProjects/breakingBad/breakingBad/src/GameState/MultiplayerState.java</file>
+            <file>file:/C:/Users/Szerch/Documents/NetBeansProjects/breakingBad/breakingBad/src/GameState/MenuState.java</file>
             <file>file:/C:/Users/Szerch/Documents/NetBeansProjects/breakingBad/breakingBad/src/GameState/Level1State.java</file>
+            <file>file:/C:/Users/Szerch/Documents/NetBeansProjects/breakingBad/breakingBad/src/GameState/GameStateManager.java</file>
+            <file>file:/C:/Users/Szerch/Documents/NetBeansProjects/breakingBad/breakingBad/src/GameState/Level2State.java</file>
         </group>
     </open-files>
 </project-private>
