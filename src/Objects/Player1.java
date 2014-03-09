@@ -24,7 +24,7 @@ public class Player1 extends Base{
 		super();
                 dx = 0;
                 try{
-                    imagen = ImageIO.read(getClass().getResourceAsStream("/Resources/Sprites/barra.png"));
+                    imagen = ImageIO.read(getClass().getResourceAsStream("/Resources/Sprites/barra.jpg"));
                 }catch(IOException e){
                     e.printStackTrace();
                 }

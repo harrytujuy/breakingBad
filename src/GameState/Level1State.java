@@ -33,6 +33,7 @@ public class Level1State extends GameState{
     private int cont;
     private SoundClip ball;
     private SoundClip breaking;
+    private SoundClip fondo;
     
     
     public Level1State(GameStateManager gsm){
@@ -40,7 +41,7 @@ public class Level1State extends GameState{
         this.gsm = gsm;
         
         try{
-            bg = new Background("/Resources/Backgrounds/level1.jpg",1);
+            bg = new Background("/Resources/Backgrounds/Breaking-Bad.jpg",1);
             
         }catch(Exception e){
             e.printStackTrace();
@@ -48,6 +49,7 @@ public class Level1State extends GameState{
         try{
                     ball = new SoundClip("/Resources/Sounds/ball.wav");
                     breaking = new SoundClip("/Resources/Sounds/cuadro.wav");
+                    fondo = new SoundClip("/Resources/Sounds/Single_Player.wav");
                 }catch(Exception e){
                         e.printStackTrace();
                 }
@@ -179,10 +181,11 @@ public class Level1State extends GameState{
         bola.setMovement(true);
         vidas = 3;
         cont = 0;
+        fondo.setLooping(true);
     }
     
-    public void init(){
-        
+    public void init(){        
+        fondo.play();
     }
     
     public void update(){
@@ -198,10 +201,12 @@ public class Level1State extends GameState{
         }
         if(cont == 29){
             gsm.setState(GameStateManager.LEVEL2STATE);
+            fondo.stop();
         }
     }
     
     public void checaColision(){
+        //Checa colision entre la barra y la pelota
         if(bola.getPosX() > barra.getPosX() && bola.getPosX() + 20 < barra.getPosX() + 93 && bola.getPosY() + 20 >= barra.getPosY() && bola.getDownLeft()){
             bola.setDownLeft(false);
             bola.setUpLeft(true);
@@ -213,15 +218,28 @@ public class Level1State extends GameState{
             ball.play();
         }
         for(Cuadro cuadro: lista){
-            if(bola.getPosX() > cuadro.getPosX() && bola.getPosX() + 20 < cuadro.getPosX() + 40 && bola.getPosY() < cuadro.getPosY() && bola.getPosY() + 20 >= cuadro.getPosY() && bola.getDownLeft()){
-                bola.setDownLeft(false);
+            //Checa colision con cuadro por la izquierda y bola hacia abajo
+            if((bola.getPosX() + 20 == cuadro.getPosX() && bola.getPosY() > cuadro.getPosY() && bola.getPosY() < cuadro.getPosY() + 40) || (bola.getPosX() + 20 == cuadro.getPosX() && bola.getPosY() + 20 > cuadro.getPosY() && bola.getPosY() + 20 < cuadro.getPosY() + 40) && bola.getDownRight()){
+                bola.setDownRight(false);
+                bola.setDownLeft(true);
+                breaking.play();
+                cuadro.setPosX(700);
+                cuadro.setPosY(700);
+                cont++;
+            }
+            
+            //Checa colision con cuadro por la izquierda y bola hacia arriba
+            else if((bola.getPosX() + 20 == cuadro.getPosX() && bola.getPosY() > cuadro.getPosY() && bola.getPosY() < cuadro.getPosY() + 40) || (bola.getPosX() + 20 == cuadro.getPosX() && bola.getPosY() + 20 > cuadro.getPosY() && bola.getPosY() + 20 < cuadro.getPosY() + 40) && bola.getUpRight()){
+                bola.setUpRight(false);
                 bola.setUpLeft(true);
                 breaking.play();
                 cuadro.setPosX(700);
                 cuadro.setPosY(700);
                 cont++;
             }
-            if(bola.getPosX() > cuadro.getPosX() && bola.getPosX() + 20 < cuadro.getPosX() + 40 && bola.getPosY() < cuadro.getPosY() && bola.getPosY() + 20 >= cuadro.getPosY() && bola.getDownRight()){               
+            
+            //Checa colision con cuadro por arriba y bola hacia la derecha
+            else if((bola.getPosY() + 20 == cuadro.getPosY() && bola.getPosX() > cuadro.getPosX() && bola.getPosX() + 20 < cuadro.getPosX() + 40) || (bola.getPosY() + 20 == cuadro.getPosY() && bola.getPosX() + 20 > cuadro.getPosX() && bola.getPosX() + 20 < cuadro.getPosX() + 40) && bola.getDownRight()){
                 bola.setDownRight(false);
                 bola.setUpRight(true);
                 breaking.play();
@@ -229,40 +247,97 @@ public class Level1State extends GameState{
                 cuadro.setPosY(700);
                 cont++;
             }
-            if(bola.getPosX() > cuadro.getPosX() && bola.getPosX() + 20 < cuadro.getPosX() + 40 && bola.getPosY() > cuadro.getPosY() && bola.getPosY() < cuadro.getPosY() + 40 && bola.getUpLeft()){                
-                bola.setUpLeft(false);
-                bola.setDownLeft(true);
-                breaking.play();
-                cuadro.setPosX(700);
-                cuadro.setPosY(700);
-                cont++;
-            }
-            if(bola.getPosX() > cuadro.getPosX() && bola.getPosX() + 20 < cuadro.getPosX() + 40 && bola.getPosY() > cuadro.getPosY() && bola.getPosY() < cuadro.getPosY() + 40 && bola.getUpRight()){               
-                bola.setUpRight(false);
-                bola.setDownRight(true);
-                breaking.play();
-                cuadro.setPosX(700);
-                cuadro.setPosY(700);
-                cont++;
-            }
-            if(bola.getPosX() + 20 > cuadro.getPosX() && bola.getPosY() < cuadro.getPosY() && bola.getPosY()+20 > cuadro.getPosY()+40 && bola.getUpRight()){
-                bola.setUpRight(false);
+            
+            //Checa colision con cuadro por arriba y bola hacia la izquierda
+            else if((bola.getPosY() + 20 == cuadro.getPosY() && bola.getPosX() > cuadro.getPosX() && bola.getPosX() + 20 < cuadro.getPosX() + 40) || (bola.getPosY() + 20 == cuadro.getPosY() && bola.getPosX() + 20 > cuadro.getPosX() && bola.getPosX() + 20 < cuadro.getPosX() + 40) && bola.getDownLeft()){
+                bola.setDownLeft(false);
                 bola.setUpLeft(true);
+                breaking.play();
+                cuadro.setPosX(700);
+                cuadro.setPosY(700);
+                cont++;
             }
-            if(bola.getPosX() + 20 > cuadro.getPosX() && bola.getPosY() < cuadro.getPosY() && bola.getPosY()+20 > cuadro.getPosY()+40 && bola.getDownRight()){
-                bola.setDownRight(false);
-                bola.setDownLeft(true);
-            }
-            if(bola.getPosX() < cuadro.getPosX() + 40 && bola.getPosY() < cuadro.getPosY() && bola.getPosY()+20 > cuadro.getPosY()+40 && bola.getUpLeft()){
+            
+            //Checa colision con cuadro por derecha y bola hacia arriba
+            else if((bola.getPosX() == cuadro.getPosX() + 40 && bola.getPosY() > cuadro.getPosY() && bola.getPosY() < cuadro.getPosY() + 40) || (bola.getPosX() == cuadro.getPosX() + 40 && bola.getPosY() + 20 > cuadro.getPosY() && bola.getPosY() + 20 < cuadro.getPosY() + 40) && bola.getUpLeft()){
                 bola.setUpLeft(false);
                 bola.setUpRight(true);
+                breaking.play();
+                cuadro.setPosX(700);
+                cuadro.setPosY(700);
+                cont++;
             }
-            if(bola.getPosX() < cuadro.getPosX() + 40 && bola.getPosY() < cuadro.getPosY() && bola.getPosY()+20 > cuadro.getPosY()+40 && bola.getDownLeft()){
+            
+            //Checa colision con cuadro por derecha y bola hacia abajo
+            else if((bola.getPosX() == cuadro.getPosX() + 40 && bola.getPosY() > cuadro.getPosY() && bola.getPosY() < cuadro.getPosY() + 40) || (bola.getPosX() == cuadro.getPosX() + 40 && bola.getPosY() + 20 > cuadro.getPosY() && bola.getPosY() + 20 < cuadro.getPosY() + 40) && bola.getDownLeft()){
                 bola.setDownLeft(false);
                 bola.setDownRight(true);
+                breaking.play();
+                cuadro.setPosX(700);
+                cuadro.setPosY(700);
+                cont++;
             }
-        }
-                
+            
+            //Checa colision con cuadro por abajo y bola hacia la izquierda
+            else if((bola.getPosY() == cuadro.getPosY() + 40 && bola.getPosX() > cuadro.getPosX() && bola.getPosX() < cuadro.getPosX() + 40) || (bola.getPosY() == cuadro.getPosY() + 40 && bola.getPosX() +20 > cuadro.getPosX() && bola.getPosX() + 20 < cuadro.getPosX() + 40) && bola.getPosX() + 20 < cuadro.getPosX() + 40 && bola.getUpLeft()){
+                bola.setUpLeft(false);
+                bola.setDownLeft(true);
+                breaking.play();
+                cuadro.setPosX(700);
+                cuadro.setPosY(700);
+                cont++;
+            }
+            
+            //Checa colision con cuadro por abajo y bola hacia la derecha
+            else if((bola.getPosY() == cuadro.getPosY() + 40 && bola.getPosX() > cuadro.getPosX() && bola.getPosX() < cuadro.getPosX() + 40) || (bola.getPosY() == cuadro.getPosY() + 40 && bola.getPosX() +20 > cuadro.getPosX() && bola.getPosX() + 20 < cuadro.getPosX() + 40) && bola.getUpRight()){
+                bola.setUpRight(false);
+                bola.setDownRight(true);
+                breaking.play();
+                cuadro.setPosX(700);
+                cuadro.setPosY(700);
+                cont++;
+            }
+            
+            //Checa colision esquina superior izquierda del cuadro
+            else if(bola.getPosX() + 20 == cuadro.getPosX() && bola.getPosY() + 20 == cuadro.getPosY() && bola.getDownRight()){
+                bola.setDownRight(false);
+                bola.setUpLeft(true);
+                breaking.play();
+                cuadro.setPosX(700);
+                cuadro.setPosY(700);
+                cont++;
+            }
+            
+            //Checa colision esquina superior derecha del cuadro
+            else if(bola.getPosX() == cuadro.getPosX() + 40 && bola.getPosY() + 20 == cuadro.getPosY() && bola.getDownLeft()){
+                bola.setDownLeft(false);
+                bola.setUpRight(true);
+                breaking.play();
+                cuadro.setPosX(700);
+                cuadro.setPosY(700);
+                cont++;
+            }
+            
+            //Checa colision esquina inferior derecha del cuadro
+            else if(bola.getPosX() == cuadro.getPosX() + 40 && bola.getPosY() == cuadro.getPosY() + 40 && bola.getUpLeft()){
+                bola.setUpLeft(false);
+                bola.setDownRight(true);
+                breaking.play();
+                cuadro.setPosX(700);
+                cuadro.setPosY(700);
+                cont++;
+            }
+            
+            //Checa colision esquina inferior izquierda del cuadro
+            else if(bola.getPosX() + 20 == cuadro.getPosX() && bola.getPosY() == cuadro.getPosY() + 40 && bola.getUpRight()){
+                bola.setUpRight(false);
+                bola.setDownLeft(true);
+                breaking.play();
+                cuadro.setPosX(700);
+                cuadro.setPosY(700);
+                cont++;
+            }
+        }      
     }
     
     public void draw(Graphics2D g){
