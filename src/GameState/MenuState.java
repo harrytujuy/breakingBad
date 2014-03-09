@@ -13,13 +13,10 @@ public class MenuState extends GameState {
 	private int currentChoice = 0;
 	private String[] options = {
 		"1 Jugador",
-		"2 Jugadores",
+		"2 Jugadores (Demo)",
 		"Ayuda",
                 "Salir"
 	};
-	
-	private Color titleColor;
-	private Font titleFont;
 	
 	private Font font;
         private SoundClip fondo;

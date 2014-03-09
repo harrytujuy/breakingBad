@@ -14,7 +14,9 @@ import TileMap.Background;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.util.LinkedList;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -25,6 +27,8 @@ public class Level2State extends GameState{
     private Player barra;
     private Bola bola;
     private Cuadro cuadro;
+    private BufferedImage playButton;
+    private BufferedImage stopButton;
     private LinkedList<Cuadro> lista;
     
     private boolean empieza;
@@ -42,7 +46,8 @@ public class Level2State extends GameState{
         
         try{
             bg = new Background("/Resources/Backgrounds/level2.jpg",1);
-            
+            playButton = ImageIO.read(getClass().getResourceAsStream("/Resources/Sprites/playButton.png"));
+            stopButton = ImageIO.read(getClass().getResourceAsStream("/Resources/Sprites/stopButton.png"));
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -192,12 +197,14 @@ public class Level2State extends GameState{
         checaColision();
         if(bola.getPierdeVidas()){
             vidas--;
-            if(vidas == 0)
-                gsm.setState(GameStateManager.MENUSTATE);
+            if(vidas == 0){
+                fondo.stop();
+                gsm.setState(GameStateManager.GAMEOVERSTATE);
+            }
             bola.setPierdeVidas(false);
         }
         if(cont == lista.size()){
-            gsm.setState(GameStateManager.MENUSTATE);
+            gsm.setState(GameStateManager.LEVEL3STATE);
             fondo.stop();
         }
     }
@@ -297,7 +304,7 @@ public class Level2State extends GameState{
             //Checa colision esquina superior izquierda del cuadro
             else if(bola.getPosX() + 20 == cuadro.getPosX() && bola.getPosY() + 20 == cuadro.getPosY() && bola.getDownRight()){
                 bola.setDownRight(false);
-                bola.setUpLeft(true);
+                bola.setDownLeft(true);
                 breaking.play();
                 cuadro.setPosX(700);
                 cuadro.setPosY(700);
@@ -307,7 +314,7 @@ public class Level2State extends GameState{
             //Checa colision esquina superior derecha del cuadro
             else if(bola.getPosX() == cuadro.getPosX() + 40 && bola.getPosY() + 20 == cuadro.getPosY() && bola.getDownLeft()){
                 bola.setDownLeft(false);
-                bola.setUpRight(true);
+                bola.setDownRight(true);
                 breaking.play();
                 cuadro.setPosX(700);
                 cuadro.setPosY(700);
@@ -317,7 +324,7 @@ public class Level2State extends GameState{
             //Checa colision esquina inferior derecha del cuadro
             else if(bola.getPosX() == cuadro.getPosX() + 40 && bola.getPosY() == cuadro.getPosY() + 40 && bola.getUpLeft()){
                 bola.setUpLeft(false);
-                bola.setDownRight(true);
+                bola.setUpRight(true);
                 breaking.play();
                 cuadro.setPosX(700);
                 cuadro.setPosY(700);
@@ -327,7 +334,7 @@ public class Level2State extends GameState{
             //Checa colision esquina inferior izquierda del cuadro
             else if(bola.getPosX() + 20 == cuadro.getPosX() && bola.getPosY() == cuadro.getPosY() + 40 && bola.getUpRight()){
                 bola.setUpRight(false);
-                bola.setDownLeft(true);
+                bola.setUpLeft(true);
                 breaking.play();
                 cuadro.setPosX(700);
                 cuadro.setPosY(700);
@@ -344,6 +351,12 @@ public class Level2State extends GameState{
         for(Cuadro cuadro: lista){
             cuadro.draw(g);
         }
+        g.setColor(Color.WHITE);
+        g.drawString("Nivel 2", 300, 25);
+        if(!pausa)
+            g.drawImage(stopButton, 10, 5, null);
+        else
+            g.drawImage(playButton, 10, 5, null);
         if(vidas <= 1)
             g.setColor(Color.RED);
         g.drawString("Vidas: "+vidas,560,20);

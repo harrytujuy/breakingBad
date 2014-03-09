@@ -73,10 +73,11 @@ public class HelpState extends GameState{
         g.setColor(colorRight);
         g.drawString("Mientras que el jugador 1 se mueve con las flechas, el jugador 2 usa A y D", 40, 300);
         g.drawString("Tambien en este modo se inicia el juego con la barra espaciadora", 40, 320);
-        g.drawString("En este modo compiten para ver quien destruye todos los bloques primero!", 40, 340);
-        g.setFont(titleFont);
+        g.drawString("En este modo compiten para ver quien destruye todos los bloques primero!", 40, 340);        
         g.setColor(Color.WHITE);
-        g.drawString("Presiona SPACE para volver al menú", 80, 400);
+        g.drawString("Pulsa la tecla P para pausar el juego en cualquier momento!", 40, 380);
+        g.setFont(titleFont);
+        g.drawString("Presiona SPACE para volver al menú", 80, 460);
     }
     
     public void keyPressed(int k){

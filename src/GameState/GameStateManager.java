@@ -12,6 +12,12 @@ public class GameStateManager {
         public static final int MULTIPLAYERSTATE = 2;
         public static final int HELPSTATE = 3;
         public static final int LEVEL2STATE = 4;
+        public static final int LEVEL3STATE = 5;
+        public static final int LEVEL4STATE = 6;
+        public static final int LEVEL5STATE = 7;
+        public static final int LEVEL6STATE = 8;
+        public static final int GAMEOVERSTATE = 9;
+        public static final int WINSTATE = 10;
 	
 	public GameStateManager() {
 		
@@ -23,7 +29,12 @@ public class GameStateManager {
                 gameStates.add(new MultiplayerState(this));
                 gameStates.add(new HelpState(this));
                 gameStates.add(new Level2State(this));
-		
+		gameStates.add(new Level3State(this));
+                gameStates.add(new Level4State(this));
+                gameStates.add(new Level5State(this));
+                gameStates.add(new Level6State(this));
+                gameStates.add(new GameOverState(this));
+                gameStates.add(new WinState(this));
 	}
 	
 	public void setState(int state) {
